@@ -1,0 +1,40 @@
+server:
+  port: 8080
+
+mybatis:
+  mapper-locations: classpath:com/abing/blog/mapper/*.xml
+  type-aliases-package: com.abing.blog.entity
+
+spring:
+  http:
+    encoding:
+      charset: utf-8
+      enabled: true
+      force: true
+  datasource:
+    username: root
+    password: lbx990203
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+    type: com.alibaba.druid.pool.DruidDataSource
+
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+    cache: false
+
+  resources:
+    chain:
+      strategy:
+        content:
+          enabled: true
+          paths: /**
+
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java
+
