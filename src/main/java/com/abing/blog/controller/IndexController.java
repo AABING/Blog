@@ -19,4 +19,9 @@ public class IndexController {
         mv.setViewName("index");
         return mv;
     }
+    @GetMapping("/blog")
+    public ModelAndView blog(ModelAndView mv) {
+        mv.setViewName("blog");
+        return mv;
+    }
 }
