@@ -51,6 +51,11 @@ body {
     padding-bottom: 5em !important;
 }
 
+.m-padded-lr {
+    padding-left: 4em !important;
+    padding-right: 4em !important;
+}
+
 /*-------text-------*/
 .m-text {
     font-weight: 300 !important;
