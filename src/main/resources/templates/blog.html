@@ -60,7 +60,7 @@
             <h2 class="ui center aligned header">
                 关于刻意练习的清单
             </h2>
-            <div id="content" class="m-padded-lr m-padded-tb-large">
+            <div id="content" class="m-padded-lr-responsive m-padded-tb-large">
                 <p>关于刻意练习的清单关于刻意练习的清单关于刻意练习的清单关于刻意练习的清单</p>
                 <h2>1</h2>
                 <p>关于刻意练习的清单关于刻意练习的清单关于刻意练习的清单关于刻意练习的清单关于刻意练习的清单关于刻意练习的清单</p>
@@ -72,7 +72,7 @@
                 <p>关于刻意练习的清单关于刻意练习的清单关于刻意练习的清单关于刻意练习的清单关于刻意练习的清单关于刻意练习的清单</p>
             </div>
             <!--标签-->
-            <div class="m-padded-lr">
+            <div class="m-padded-lr-responsive">
                 <div class="ui basic teal left pointing label">方法论</div>
             </div>
             <!--赞赏-->
@@ -95,10 +95,114 @@
             </div>
         </div>
         <div class="ui attached positive message">
-            博客信息
+            <!--博客信息-->
+            <div class="ui middle aligned grid">
+                <div class="eleven wide column">
+                    <ui class="list">
+                        <li>作者：子皿木子（联系作者）</li>
+                        <li>发表时间：2019-11-22 16：22</li>
+                        <li>版权声明：自由转载-非商用-非衍生-保持署名（创意共享3.0许可证）</li>
+                        <li>公众号转载：请在文末添加作者公众号二维码</li>
+                    </ui>
+                </div>
+                <div class="five wide column">
+                    <img src="images/wechat.png" alt="二维码" class="ui right floated rounded bordered image" style="width: 110px">
+                </div>
+            </div>
         </div>
         <div class="ui bottom attached segment">
-            留言区域
+            <!--留言区域-->
+            <div class="ui teal segment">
+                <div class="ui small comments">
+                    <h3 class="ui dividing header">评论</h3>
+                    <div class="comment">
+                        <a class="avatar">
+                            <img src="https://picsum.photos/id/1005/100/100">
+                        </a>
+                        <div class="content">
+                            <a class="author">Matt</a>
+                            <div class="metadata">
+                                <span class="date">今天下午 5:42</span>
+                            </div>
+                            <div class="text">太赞了！ </div>
+                            <div class="actions">
+                                <a class="reply">回复</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment">
+                        <a class="avatar">
+                            <img src="https://picsum.photos/id/1005/100/100">
+                        </a>
+                        <div class="content">
+                            <a class="author">Elliot Fu</a>
+                            <div class="metadata">
+                                <span class="date">昨天上午12:30</span>
+                            </div>
+                            <div class="text">
+                                <p>這對我的研究是非常有用.謝謝!</p>
+                            </div>
+                            <div class="actions">
+                                <a class="reply">回复</a>
+                            </div>
+                        </div>
+                        <div class="comments">
+                            <div class="comment">
+                                <a class="avatar">
+                                    <img src="https://picsum.photos/id/1005/100/100">
+                                </a>
+                                <div class="content">
+                                    <a class="author">Jenny Hess</a>
+                                    <div class="metadata">
+                                        <span class="date">刚刚</span>
+                                    </div>
+                                    <div class="text">艾略特你永远是多么正确 :) </div>
+                                    <div class="actions">
+                                        <a class="reply">回复</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment">
+                        <a class="avatar">
+                            <img src="https://picsum.photos/id/1005/100/100">
+                        </a>
+                        <div class="content">
+                            <a class="author">Joe Henderson</a>
+                            <div class="metadata">
+                                <span class="date">5 天以前</span>
+                            </div>
+                            <div class="text">老兄，这太棒了。非常感谢。 </div>
+                            <div class="actions">
+                                <a class="reply">回复</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui form">
+                <div class="field">
+                    <textarea name="content" placeholder="请输入评论内容"></textarea>
+                </div>
+                <div class="fields">
+                    <div class="field m-mobile-wide m-margin-bottom-small">
+                        <div class="ui left icon input">
+                            <i class="user icon"></i>
+                            <input type="text" name="nickname" placeholder="姓名">
+                        </div>
+                    </div>
+                    <div class="field m-mobile-wide m-margin-bottom-small">
+                        <div class="ui left icon input">
+                            <i class="mail icon"></i>
+                            <input type="email" name="email" placeholder="邮箱">
+                        </div>
+                    </div>
+                    <div class="field m-mobile-wide m-margin-bottom-small">
+                        <button class="ui teal button m-mobile-wide"><i class="edit icon"></i>发布</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -149,7 +253,7 @@
     $("#payButton").popup({
         popup : $('.payQR.popup'),
         on : 'click',
-        position: 'bottom centera'
+        position: 'bottom center'
     });
 </script>
 </body>
