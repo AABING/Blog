@@ -19,9 +19,34 @@ public class IndexController {
         mv.setViewName("index");
         return mv;
     }
+
     @GetMapping("/blog")
     public ModelAndView blog(ModelAndView mv) {
         mv.setViewName("blog");
+        return mv;
+    }
+
+    @GetMapping("/types")
+    public ModelAndView types(ModelAndView mv) {
+        mv.setViewName("types");
+        return mv;
+    }
+
+    @GetMapping("/tags")
+    public ModelAndView tags(ModelAndView mv) {
+        mv.setViewName("tags");
+        return mv;
+    }
+
+    @GetMapping("/archives")
+    public ModelAndView archives(ModelAndView mv) {
+        mv.setViewName("archives");
+        return mv;
+    }
+
+    @GetMapping("/about")
+    public ModelAndView about(ModelAndView mv) {
+        mv.setViewName("about");
         return mv;
     }
 }
