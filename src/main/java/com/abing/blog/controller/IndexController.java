@@ -49,4 +49,16 @@ public class IndexController {
         mv.setViewName("about");
         return mv;
     }
+
+    @GetMapping("/blogManagement")
+    public ModelAndView blogManagement(ModelAndView mv) {
+        mv.setViewName("admin/blogManagement");
+        return mv;
+    }
+
+    @GetMapping("/blogInput")
+    public ModelAndView blogInput(ModelAndView mv) {
+        mv.setViewName("admin/blogInput");
+        return mv;
+    }
 }
