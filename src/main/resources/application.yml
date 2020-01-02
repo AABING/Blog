@@ -1,9 +1,15 @@
 server:
   port: 8080
 
+file:
+  staticAccessPath: /images/**
+  imagesPath: /home/abing/下载/
+
 mybatis:
-  mapper-locations: classpath:com/abing/blog/mapper/*.xml
-  type-aliases-package: com.abing.blog.po
+  mapper-locations: classpath:/mybatis/mapper/*.xml
+  type-aliases-package: com.abing.blog.entity
+  configuration:
+    map-underscore-to-camel-case: true
 
 spring:
   http:
@@ -17,20 +23,6 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
     type: com.alibaba.druid.pool.DruidDataSource
-
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-
-  thymeleaf:
-    prefix: classpath:/templates/
-    suffix: .html
-    encoding: UTF-8
-    servlet:
-      content-type: text/html
-    cache: false
-    mode: HTML
 
   resources:
     chain:
@@ -46,3 +38,6 @@ spring:
 
   profiles:
     active: dev
+
+logging:
+  config: classpath:logback-spring.xml

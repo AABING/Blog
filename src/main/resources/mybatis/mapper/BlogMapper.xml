@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.abing.blog.mapper.BlogMapper">
+
+    <sql id="blog">
+        id,
+        title,
+        content,
+        first_picture,
+        flag,
+        views,
+        appreciation,
+        share_statement,
+        commentabled,
+        published,
+        recommend,
+        create_time,
+        update_time,
+        type_id,
+        user_id
+    </sql>
+
+    <sql id="key">
+        <if test="id != null and id != ''">id,</if>
+        title,
+        <if test="content != null and content != ''">content,</if>
+        <if test="firstPicture != null and firstPicture != ''">first_picture,</if>
+        <if test="flag != null and flag != ''">flag,</if>
+        <if test="views != null and views != ''">views,</if>
+        <if test="appreciation != null and title != ''">appreciation,</if>
+        <if test="shareStatement != null and shareStatement != ''">share_statement,</if>
+        <if test="commentabled != null and commentabled != ''">commentabled,</if>
+        <if test="published != null and published != ''">published,</if>
+        <if test="recommend != null and recommend != ''">recommend,</if>
+        create_time,
+        <if test="updateTime != null and updateTime != ''">update_time,</if>
+        type_id,
+        user_id
+    </sql>
+
+    <sql id="values">
+        <if test="id != null and id != ''">#{id},</if>
+        #{title},
+        <if test="content != null and content != ''">#{content},</if>
+        <if test="firstPicture != null and firstPicture != ''">#{firstPicture},</if>
+        <if test="flag != null and flag != ''">#{flag},</if>
+        <if test="views != null and views != ''">#{views},</if>
+        <if test="appreciation != null and title != ''">#{appreciation},</if>
+        <if test="shareStatement != null and shareStatement != ''">#{shareStatement},</if>
+        <if test="commentabled != null and commentabled != ''">#{commentabled},</if>
+        <if test="published != null and published != ''">#{published},</if>
+        <if test="recommend != null and recommend != ''">#{recommend},</if>
+        #{createTime},
+        <if test="updateTime != null and updateTime != ''">#{updateTime},</if>
+        #{typeId},
+        #{userId}
+    </sql>
+
+    <resultMap id="blogPlus" type="com.abing.blog.pojo.BlogPojo">
+        <id property="id" column="id"/>
+        <association property="type" select="com.abing.blog.mapper.TypeMapper.selectByPrimaryKey" column="type_id"/>
+        <association property="user" select="com.abing.blog.mapper.UserMapper.selectByPrimaryKey" column="user_id"/>
+        <collection property="tags" select="com.abing.blog.mapper.TagMapper.listTagsByBlogId" column="id"/>
+        <collection property="comments" select="com.abing.blog.mapper.CommentMapper.listCommentsByBlogId" column="id"/>
+    </resultMap>
+    
+    <select id="listBlogs" resultMap="blogPlus">
+        SELECT
+            <include refid="blog"/>
+        FROM
+            t_blog
+    </select>
+
+    <select id="getBlogById" resultMap="blogPlus">
+        SELECT
+            <include refid="blog"/>
+        FROM
+            t_blog
+        WHERE
+            id = #{id}
+    </select>
+
+    <select id="listBlogsByUserId" resultMap="blogPlus">
+        SELECT
+            <include refid="blog"/>
+        FROM
+            t_blog
+        WHERE
+            user_id = #{uid}
+    </select>
+
+    <insert id="saveBlog" parameterType="com.abing.blog.entity.Blog" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO
+            t_blog
+            ( <include refid="key"/> )
+        VALUES
+            (<include refid="values"/>)
+    </insert>
+</mapper>

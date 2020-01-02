@@ -40,8 +40,15 @@ public class LogAspect {
     }
 
     @After("log()")
-    public void doAfter() {
-        log.info("-------doAfter-------");
+    public void doAfter(JoinPoint joinPoint) {
+        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        HttpServletRequest request = attributes.getRequest();
+        String url = request.getRequestURL().toString();
+        String ip = request.getRemoteAddr();
+        String classMethod = joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName();
+        Object[] args = joinPoint.getArgs();
+        RequestLog requestLog = new RequestLog(url, ip, classMethod, args);
+        log.info("Request: {}", requestLog);
     }
 
     @AfterReturning(returning = "result", pointcut = "log()")
