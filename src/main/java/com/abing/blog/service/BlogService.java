@@ -2,6 +2,7 @@ package com.abing.blog.service;
 
 import com.abing.blog.entity.Blog;
 import com.abing.blog.pojo.BlogPojo;
+import com.abing.blog.pojo.SimpleBlogPojo;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ import java.util.List;
  * @since JDK 1.8
  */
 public interface BlogService {
+
     /**
      * description: 获取全部博客
      *
@@ -72,4 +74,64 @@ public interface BlogService {
      * @date 2020/01/02 12:52:52
      */
     String removeBlog(String id) throws Exception;
+
+    /**
+     * description: 获取所有推荐博客
+     *
+     * @return java.util.List<com.abing.blog.pojo.SimpleBlogPojo>
+     * @author LiBingxiang
+     * @date 2020/01/02 14:41:52
+     */
+    List<SimpleBlogPojo> listRecommendBlogs() throws Exception;
+
+    /**
+     * description: 根据分类获取博客
+     *
+     * @return java.util.List<com.abing.blog.pojo.SimpleBlogPojo>
+     * @author LiBingxiang
+     * @date 2020/01/02 19:24:40
+     */
+    List<SimpleBlogPojo> listBlogsByType(String id) throws Exception;
+
+    /**
+     * description: 获取用户收藏的博客
+     *
+     * @param uid 用户id
+     * @return java.util.List<com.abing.blog.pojo.SimpleBlogPojo>
+     * @author LiBingxiang
+     * @date 2020/01/02 20:39:15
+     */
+    List<SimpleBlogPojo> listCollectBlogs(String uid) throws Exception;
+
+    /**
+     * description: 收藏博客
+     *
+     * @param blogId  博客id
+     * @param uid 用户id
+     * @return java.lang.String
+     * @author LiBingxiang
+     * @date 2020/01/02 21:10:37
+     */
+    String collectBlog(String blogId, String uid) throws Exception;
+
+    /**
+     * description: 收藏博客
+     *
+     * @param blogId 博客id
+     * @param uid 用户id
+     * @return java.lang.String
+     * @author LiBingxiang
+     * @date 2020/01/02 21:18:52
+     */
+    String cancelCollectBlog(String blogId, String uid) throws Exception;
+
+    /**
+     * description: 搜索博客
+     *
+     * @param title 博客标题
+     * @return java.util.List<com.abing.blog.pojo.SimpleBlogPojo>
+     * @author LiBingxiang
+     * @date 2020/01/02 21:31:12
+     */
+    List<SimpleBlogPojo> searchBlog(String title);
 }

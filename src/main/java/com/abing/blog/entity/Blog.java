@@ -6,6 +6,8 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Description: Blog
@@ -54,14 +56,14 @@ public class Blog {
     private int published = 1;
 
     @ApiModelProperty("推荐")
-    private int recommend = 1;
+    private int recommend = 0;
 
     @NotNull
     @ApiModelProperty("创建时间")
-    private String createTime;
+    private String createTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 
     @ApiModelProperty("更新时间")
-    private String updateTime;
+    private String updateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 
     @NotNull
     @ApiModelProperty("分类id")

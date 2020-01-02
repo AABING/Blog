@@ -4,6 +4,7 @@ server:
 file:
   staticAccessPath: /images/**
   imagesPath: /home/abing/下载/
+  imagesPathD: /home/JavaWeb/project/blog/images/
 
 mybatis:
   mapper-locations: classpath:/mybatis/mapper/*.xml
@@ -17,6 +18,15 @@ spring:
       charset: utf-8
       enabled: true
       force: true
+
+  servlet:
+    multipart:
+      max-request-size: 10MB
+      max-file-size: 10MB
+
+  thymeleaf:
+    cache: false
+
   datasource:
     username: root
     password: lbx990203

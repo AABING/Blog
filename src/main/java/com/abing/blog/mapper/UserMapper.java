@@ -2,6 +2,7 @@ package com.abing.blog.mapper;
 
 import com.abing.blog.baseDao.MyMapper;
 import com.abing.blog.entity.User;
+import com.abing.blog.pojo.UserPojo;
 import org.springframework.security.core.Transient;
 
 /**
@@ -14,5 +15,4 @@ import org.springframework.security.core.Transient;
  */
 @Transient
 public interface UserMapper extends MyMapper<User> {
-
 }

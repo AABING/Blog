@@ -63,6 +63,12 @@
         <collection property="tags" select="com.abing.blog.mapper.TagMapper.listTagsByBlogId" column="id"/>
         <collection property="comments" select="com.abing.blog.mapper.CommentMapper.listCommentsByBlogId" column="id"/>
     </resultMap>
+
+    <resultMap id="simpleBlog" type="com.abing.blog.pojo.SimpleBlogPojo">
+        <id property="id" column="id"/>
+        <association property="type" select="com.abing.blog.mapper.TypeMapper.selectByPrimaryKey" column="type_id"/>
+        <association property="user" select="com.abing.blog.mapper.UserMapper.selectByPrimaryKey" column="user_id"/>
+    </resultMap>
     
     <select id="listBlogs" resultMap="blogPlus">
         SELECT
@@ -89,6 +95,46 @@
             user_id = #{uid}
     </select>
 
+    <select id="listRecommendBlogs" resultMap="simpleBlog">
+        SELECT
+            <include refid="blog"/>
+        FROM
+            t_blog
+        WHERE
+            recommend = 1
+    </select>
+
+    <select id="listBlogsByType" resultMap="simpleBlog">
+        SELECT
+            <include refid="blog"/>
+        FROM
+            t_blog
+        WHERE
+            type_id = #{id}
+    </select>
+
+    <select id="listCollectBlogs" resultMap="simpleBlog">
+        SELECT
+            <include refid="blog"/>
+        FROM
+            t_blog
+        WHERE id IN
+            (SELECT
+                blog_id
+            FROM
+                t_blog_user
+            WHERE user_id = #{uid})
+    </select>
+
+    <select id="searchBlog" resultMap="simpleBlog">
+        SELECT
+            <include refid="blog"/>
+        FROM
+            t_blog
+        WHERE
+            title LIKE CONCAT("%", #{title}, "%")
+    </select>
+
     <insert id="saveBlog" parameterType="com.abing.blog.entity.Blog" keyProperty="id" useGeneratedKeys="true">
         INSERT INTO
             t_blog
@@ -96,4 +142,30 @@
         VALUES
             (<include refid="values"/>)
     </insert>
+
+    <insert id="saveCollectBlog">
+        INSERT INTO
+            t_blog_user
+            (blog_id, user_id)
+        VALUES
+            (#{blogId}, #{uid})
+    </insert>
+
+    <update id="updateViewsById">
+        UPDATE
+            t_blog
+        SET
+            views = #{views}
+        WHERE
+            id = #{id}
+    </update>
+
+    <delete id="removeCollectBlog">
+        DELETE
+        FROM
+          t_blog_user
+        WHERE blog_id = #{blogId}
+          AND user_id = #{uid}
+    </delete>
+
 </mapper>

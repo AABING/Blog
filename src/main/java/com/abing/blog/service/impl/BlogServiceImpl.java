@@ -5,6 +5,7 @@ import com.abing.blog.entity.User;
 import com.abing.blog.mapper.BlogMapper;
 import com.abing.blog.mapper.UserMapper;
 import com.abing.blog.pojo.BlogPojo;
+import com.abing.blog.pojo.SimpleBlogPojo;
 import com.abing.blog.service.BlogService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -43,6 +44,7 @@ public class BlogServiceImpl implements BlogService {
         if (blog == null) {
             throw new Exception("该博客不存在");
         }
+        blogMapper.updateViewsById(id, blog.getViews() + 1);
         return blog;
     }
 
@@ -79,10 +81,68 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public String removeBlog(String id) throws Exception {
+        Blog blog = blogMapper.selectByPrimaryKey(id);
+        if (blog == null) {
+            throw new Exception("博客不存在");
+        }
         int result = blogMapper.deleteByPrimaryKey(id);
         if (result != 1) {
             throw new Exception("删除博客失败");
         }
         return "删除博客成功";
+    }
+
+    @Override
+    public List<SimpleBlogPojo> listRecommendBlogs() throws Exception {
+        List<SimpleBlogPojo> blogs = blogMapper.listRecommendBlogs();
+        if (blogs == null) {
+            throw new Exception("暂无博客");
+        }
+        return blogs;
+    }
+
+    @Override
+    public List<SimpleBlogPojo> listBlogsByType(String id) throws Exception {
+        List<SimpleBlogPojo> blogs = blogMapper.listBlogsByType(id);
+        if (blogs == null) {
+            throw new Exception("暂无博客");
+        }
+        return blogs;
+    }
+
+    @Override
+    public List<SimpleBlogPojo> listCollectBlogs(String uid) throws Exception {
+        User user = userMapper.selectByPrimaryKey(uid);
+        if (user == null) {
+            throw new Exception("该用户不存在");
+        }
+        List<SimpleBlogPojo> blogs = blogMapper.listCollectBlogs(uid);
+        if (blogs == null) {
+            throw new Exception("暂无博客");
+        }
+        return blogs;
+    }
+
+    @Override
+    public String collectBlog(String blogId, String uid) throws Exception {
+        int result = blogMapper.saveCollectBlog(blogId, uid);
+        if (result != 1) {
+            throw new Exception("收藏博客失败");
+        }
+        return "收藏成功";
+    }
+
+    @Override
+    public String cancelCollectBlog(String blogId, String uid) throws Exception {
+        int result = blogMapper.removeCollectBlog(blogId, uid);
+        if (result != 1) {
+            throw new Exception("取消收藏失败");
+        }
+        return "取消收藏";
+    }
+
+    @Override
+    public List<SimpleBlogPojo> searchBlog(String title) {
+        return blogMapper.searchBlog(title);
     }
 }
