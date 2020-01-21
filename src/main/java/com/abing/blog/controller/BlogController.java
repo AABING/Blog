@@ -48,11 +48,11 @@ public class BlogController {
     @ApiResponses({@ApiResponse(code = ResultCode.OK, message = "请求成功"),
             @ApiResponse(code = ResultCode.NOT_FIND_RESOURCE, message = "该博客不存在")})
     @ApiImplicitParams({@ApiImplicitParam(paramType = "path", dataType = "String", name = "id", value = "博客id", required = true)})
-    @GetMapping("/get/{id}")
-    public Result<BlogPojo> getBlog(@PathVariable String id) {
+    @GetMapping("/get/{blogId}/{uid}")
+    public Result<BlogPojo> getBlog(@PathVariable String blogId, @PathVariable String uid) {
         Result<BlogPojo> result = new Result<>();
         try {
-            BlogPojo blog = blogService.getBlogById(id);
+            BlogPojo blog = blogService.getBlogById(blogId, uid);
             result.setData(blog);
         } catch (Exception e) {
             result.setError(ResultCode.NOT_FIND_RESOURCE, e.getMessage());

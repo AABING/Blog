@@ -39,12 +39,17 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public BlogPojo getBlogById(String id) throws Exception {
-        BlogPojo blog = blogMapper.getBlogById(id);
+    public BlogPojo getBlogById(String blogId, String uid) throws Exception {
+        BlogPojo blog = blogMapper.getBlogById(blogId);
         if (blog == null) {
             throw new Exception("该博客不存在");
         }
-        blogMapper.updateViewsById(id, blog.getViews() + 1);
+        if (blogMapper.getCollection(blogId, uid) != null) {
+            blog.setFlag(1);
+        } else {
+            blog.setFlag(0);
+        }
+        blogMapper.updateViewsById(blogId, blog.getViews() + 1);
         return blog;
     }
 

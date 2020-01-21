@@ -135,6 +135,16 @@
             title LIKE CONCAT("%", #{title}, "%")
     </select>
 
+    <select id="getCollection" resultType="java.util.Map">
+        SELECT
+          blog_id,
+          user_id
+        FROM
+          t_blog_user
+        WHERE blog_id = #{blogId}
+          AND user_id = #{uid}
+    </select>
+
     <insert id="saveBlog" parameterType="com.abing.blog.entity.Blog" keyProperty="id" useGeneratedKeys="true">
         INSERT INTO
             t_blog

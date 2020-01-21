@@ -33,7 +33,7 @@ public interface BlogService {
      * @author LiBingxiang
      * @date 2019/12/15 13:32:43
      */
-    BlogPojo getBlogById(String id) throws Exception;
+    BlogPojo getBlogById(String blogId, String uid) throws Exception;
 
     /**
      * description: 根据用户id获取该用户所有的博客

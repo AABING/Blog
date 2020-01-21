@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.security.core.Transient;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Description: BlogMapper
@@ -130,4 +131,15 @@ public interface BlogMapper extends MyMapper<Blog> {
      * @date 2020/01/02 21:37:03
      */
     List<SimpleBlogPojo> searchBlog(String title);
+
+    /**
+     * description: 查询博客收藏情况
+     *
+     * @param blogId 博客id
+     * @param uid 用户id
+     * @return java.lang.Integer
+     * @author LiBingxiang
+     * @date 2020/01/03 13:45:38
+     */
+    Map<Integer,Integer> getCollection(@Param("blogId") String blogId, @Param("uid") String uid);
 }

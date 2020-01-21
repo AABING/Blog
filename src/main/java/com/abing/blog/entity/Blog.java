@@ -38,25 +38,25 @@ public class Blog {
     private String firstPicture;
 
     @ApiModelProperty("标记")
-    private String flag;
+    private Integer flag = 0;
 
     @ApiModelProperty("浏览次数")
     private Integer views = 1;
 
     @ApiModelProperty("赞赏开启")
-    private int appreciation = 0;
+    private Integer appreciation = 0;
 
     @ApiModelProperty("版权开启")
-    private int shareStatement = 1;
+    private Integer shareStatement = 1;
 
     @ApiModelProperty("评论开启")
-    private int commentabled = 1;
+    private Integer commentabled = 1;
 
     @ApiModelProperty("发布")
-    private int published = 1;
+    private Integer published = 1;
 
     @ApiModelProperty("推荐")
-    private int recommend = 0;
+    private Integer recommend = 0;
 
     @NotNull
     @ApiModelProperty("创建时间")

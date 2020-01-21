@@ -35,7 +35,7 @@ public class BlogPojo {
     private String firstPicture;
 
     @ApiModelProperty("标记")
-    private String flag;
+    private Integer flag;
 
     @ApiModelProperty("浏览次数")
     private Integer views;
